@@ -107,9 +107,6 @@ Access API documentation at: `http://localhost:8000/docs`
 * **GitHub:** Hosted under Git version control. Large dataset files (`data/processed/final_processed_dataset.csv`) are managed using Git LFS.
 * **Streamlit Community Cloud:** Deployed directly from this GitHub branch to serve the dashboard.
 
-## Screenshots
-*(Dashboard screenshots and layout preview placeholders).*
-
 ## Future Improvements
 * Integrating automated continuous integration (CI) tests for code formatting.
 * Enhancing regression unit test coverage.
