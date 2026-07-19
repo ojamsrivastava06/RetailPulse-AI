@@ -3,7 +3,7 @@
 An interactive analytics application built to process retail transactions, segment customers, forecast demand, optimize inventory, and predict customer churn risks.
 
 ## Project Overview
-RetailPulse processes historical transactional invoices, performs customer segmentation, estimates future sales volumes, calculates safety stocking thresholds, and scores churn risk levels. The project provides a multi-page Streamlit dashboard to visualize results, along with a supplementary FastAPI backend to query prediction tables.
+RetailPulse processes historical transactional invoices, performs customer segmentation, estimates future sales volumes, calculates safety stocking thresholds, and scores churn risk levels. The project provides a multi-page Streamlit dashboard for visualization and machine learning insights, with modular backend components for analytics and prediction services.
 
 ## Technology Stack
 * **Frontend UI:** Streamlit, Plotly, HTML/CSS
