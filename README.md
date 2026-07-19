@@ -10,7 +10,7 @@ RetailPulse processes historical transactional invoices, performs customer segme
 * **Backend REST API:** FastAPI, Uvicorn, Pydantic
 * **Analytics & Machine Learning:** Scikit-learn, Pandas, NumPy
 * **Run Monitoring:** MLflow, Evidently AI
-* **Tool Configuration:** Pytest, Pathlib
+* **Tool Configuration:** Pytest
 
 ## Project Phases
 
