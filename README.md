@@ -65,7 +65,13 @@ RetailPulse-AI/
 ```
 
 ## Dataset
-The application uses the **Online Retail II** dataset from the UCI Machine Learning Repository, containing transactional history for a UK-based online retail store.
+The project is built on the **Online Retail II** dataset from the **UCI Machine Learning Repository**, which contains transactional records of a UK-based online retail company.
+
+The raw dataset is cleaned, transformed, and feature-engineered through the preprocessing pipeline to generate the final dataset:
+
+`data/processed/final_processed_dataset.csv`
+
+This processed dataset is used throughout the project for customer segmentation, demand forecasting, inventory optimization, and customer churn prediction.
 
 ## Machine Learning Models
 * **Clustering (Phase 2):** KMeans (optimized with Principal Component Analysis and t-SNE)
@@ -113,9 +119,11 @@ Access API documentation at: `http://localhost:8000/docs`
 * **Streamlit Community Cloud:** Deployed directly from this GitHub branch to serve the dashboard.
 
 ## Future Improvements
-* Integrating automated continuous integration (CI) tests for code formatting.
-* Enhancing regression unit test coverage.
-* Packaging pipeline files into modular packages.
+* Real-time streaming prediction support
+* Automated CI/CD pipeline using GitHub Actions
+* Containerized deployment using Docker
+* Model monitoring and drift detection enhancements
+* Cloud deployment on Azure or AWS
 
 ## Author
 Ojam Srivastava  
