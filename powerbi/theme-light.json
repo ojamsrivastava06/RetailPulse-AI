@@ -1,0 +1,23 @@
+{
+  "name": "RetailPulse Enterprise Light",
+  "background": "#F5F7FA",
+  "foreground": "#0F172A",
+  "tableAccent": "#1D4ED8",
+  "dataColors": [
+    "#1D4ED8",
+    "#0F766E",
+    "#D97706",
+    "#7C3AED",
+    "#DC2626",
+    "#15803D",
+    "#0284C7",
+    "#EA580C"
+  ],
+  "good": "#15803D",
+  "neutral": "#64748B",
+  "bad": "#DC2626",
+  "minimum": "#CBD5E1",
+  "center": "#94A3B8",
+  "maximum": "#7C3AED",
+  "null": "#94A3B8"
+}

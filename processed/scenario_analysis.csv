@@ -1,0 +1,10 @@
+Scenario,DemandShift,PriceShift,SupplierDelayFactor,ChurnShift,ExpectedDemand,ExpectedRevenue,RevenueImpact,InventoryImpact,SupplierImpact,ChurnImpact,ProfitImpact,RiskScore,RiskLevel,RecommendedResponse
+Demand +10%,0.1,0.0,0.0,0.0,4784751.71,4385353.52,398668.5,5256.59,0.0,0.0,68308.31,47.0,Medium,Monitor scenario indicators and keep current operating plan active.
+Demand +20%,0.2,0.0,0.0,0.0,5219729.14,4784022.03,797337.0,10513.17,0.0,0.0,134812.05,59.0,Medium,Monitor scenario indicators and keep current operating plan active.
+Demand -20%,-0.2,0.0,0.0,0.0,3479819.43,3189348.02,-797337.0,10513.17,0.0,0.0,-151552.56,59.0,Medium,"Reduce exposure, preserve cash, and focus promotions on recoverable demand."
+Holiday Season,0.28,0.02,0.06,-0.02,5567711.08,5205015.96,1218330.94,14718.44,0.0,-38507.61,206385.69,77.6,High,Capture revenue upside while pre-allocating inventory and fulfillment capacity.
+Supplier Delay,-0.04,0.0,0.22,0.0,4175783.31,3827217.62,-159467.4,2102.63,0.0,0.0,-28866.86,72.8,High,"Escalate critical suppliers, confirm lead times, and protect high-revenue SKUs."
+Inventory Shortage,-0.1,0.0,0.08,0.02,3914796.85,3588016.52,-398668.5,5256.59,0.0,38507.61,-113381.61,61.6,Medium,"Prioritize replenishment, safety stock, and warehouse transfer decisions."
+Customer Churn Increase,-0.05,0.0,0.0,0.12,4132285.57,3787350.77,-199334.25,2628.29,0.0,231045.66,-267580.38,56.6,Medium,Fund retention actions for high-value customers and monitor weekly risk movement.
+Price Increase,-0.08,0.1,0.0,0.03,4001792.34,4034525.24,47840.22,4205.27,0.0,57761.42,-51280.2,48.5,Medium,Validate price elasticity and protect demand-sensitive customer segments.
+Price Discount,0.14,-0.08,0.0,-0.02,4958742.68,4181235.25,194550.23,7359.22,0.0,-38507.61,29464.38,56.6,Medium,Use margin guardrails and target discounts to slow-moving or bundle-ready products.

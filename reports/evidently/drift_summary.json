@@ -1,0 +1,75 @@
+{
+  "drift_summary": {
+    "drift_count": 3.0,
+    "drift_share": 0.25,
+    "dataset_drifted": false
+  },
+  "quality_summary": {
+    "row_count": 0.0,
+    "column_count": 38.0,
+    "missing_values_count": 0.0,
+    "missing_values_share": 0.0
+  },
+  "feature_drift": {
+    "Quantity": {
+      "p_value": 0.01038211436889767,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "UnitPrice": {
+      "p_value": 0.0075763440314684325,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "TotalSales": {
+      "p_value": 0.017136539115910062,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "Revenue": {
+      "p_value": 0.017136539115910062,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "Profit": {
+      "p_value": 0.01713901360865846,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "CustomerTenure": {
+      "p_value": 0.3603752298753527,
+      "threshold": 0.1,
+      "drifted": false
+    },
+    "CustomerFrequency": {
+      "p_value": 0.16515729889038486,
+      "threshold": 0.1,
+      "drifted": false
+    },
+    "DaysSinceLastPurchase": {
+      "p_value": 3.025609482183403,
+      "threshold": 0.1,
+      "drifted": false
+    },
+    "CLV": {
+      "p_value": 0.06231176022166409,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "AverageBasketValue": {
+      "p_value": 0.021177916322287375,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "Country": {
+      "p_value": 0.04600053614498827,
+      "threshold": 0.1,
+      "drifted": true
+    },
+    "ProductCategory": {
+      "p_value": 0.02162025325289019,
+      "threshold": 0.1,
+      "drifted": true
+    }
+  }
+}

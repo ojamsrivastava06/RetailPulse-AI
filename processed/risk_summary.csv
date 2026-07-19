@@ -1,0 +1,7 @@
+RiskDomain,RiskScore,RiskLevel,Drivers,RecommendedMitigation
+Forecast Risk,23.9,Low,"Demand variance, forecast error, and revenue concentration.",Review high-error series and validate near-term replenishment assumptions.
+Inventory Risk,36.19,Low,"Stockout exposure, overstock exposure, coverage days, and reorder pressure.","Prioritize P0/P1 replenishment, safety stock, and warehouse transfer actions."
+Customer Risk,42.1,Low,"Churn probability, customer health, lifetime value at risk, and engagement drop.",Launch retention actions for high-value critical-risk customers.
+Revenue Risk,32.95,Low,"Revenue at risk from demand drop, stockouts, churn, and low product velocity.",Protect top revenue drivers and rebalance promotion focus.
+Supplier Risk,20.33,Low,"Lead-time pressure, supplier delay risk, and fulfillment constraints.",Escalate supplier lanes tied to critical SKUs and high revenue exposure.
+Operational Risk,45.7,Medium,"Warehouse allocation, fulfillment readiness, action urgency, and execution complexity.",Assign owners for immediate actions and track weekly closure.

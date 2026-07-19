@@ -1,0 +1,39 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+
+# Test and lint caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebook noise
+.ipynb_checkpoints/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+
+# Local runtime artifacts
+*.log
+*.tmp
+
+# Generated report backups and figures
+*.bak_*
+
+# Local MLflow runs and database
+mlruns/
+mlflow.db
+
+# Scratch workspace files
+scratch/
+
+# App and framework state
+.streamlit/
+

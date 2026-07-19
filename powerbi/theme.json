@@ -1,0 +1,23 @@
+{
+  "name": "RetailPulse Enterprise Dark",
+  "background": "#0B1220",
+  "foreground": "#E5EEF8",
+  "tableAccent": "#2D6CDF",
+  "dataColors": [
+    "#2D6CDF",
+    "#14B8A6",
+    "#F59E0B",
+    "#A855F7",
+    "#EF4444",
+    "#22C55E",
+    "#38BDF8",
+    "#F97316"
+  ],
+  "good": "#22C55E",
+  "neutral": "#94A3B8",
+  "bad": "#EF4444",
+  "minimum": "#1E293B",
+  "center": "#94A3B8",
+  "maximum": "#A855F7",
+  "null": "#64748B"
+}

@@ -1,0 +1,5 @@
+Model,BestCVScore,TuningTrials,BestParams
+Random Forest,0.5002285234962482,5,"{""n_estimators"": 24, ""max_depth"": 4, ""min_samples_split"": 2, ""min_samples_leaf"": 9}"
+Gradient Boosting,0.4925780945442032,5,"{""learning_rate"": 0.07661100707771368, ""n_estimators"": 24, ""max_depth"": 3}"
+XGBoost,0.49211862789115834,5,"{""learning_rate"": 0.03574712922600244, ""max_depth"": 10, ""n_estimators"": 76, ""subsample"": 0.7993292420985183, ""colsample_bytree"": 0.5780093202212182}"
+Extra Trees,0.49095073839974407,5,"{""n_estimators"": 24, ""max_depth"": 4}"
