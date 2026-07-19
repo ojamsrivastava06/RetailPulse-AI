@@ -38,24 +38,42 @@ The application runs on a batch-inference data flow:
 ## Folder Structure
 ```text
 retailpulse-main/
+├── .github/                  # GitHub workflows and issue templates
 ├── api/                      # FastAPI endpoint routes, services, and schemas
 ├── app/                      # Streamlit application source files
 │   ├── components/           # UI components, layout styles, and loaders
 │   ├── pages/                # Streamlit multi-page dashboards
 │   └── styles/               # CSS stylesheets
 ├── data/                     # Data folder
-│   └── processed/            # Location of cleaned transaction dataset
+│   ├── external/             # External reference data files
+│   ├── interim/              # Intermediate data files
+│   ├── processed/            # Location of cleaned transaction dataset
+│   └── raw/                  # Source raw data files
 ├── docs/                     # Technical documentation and reviews
 ├── models/                   # Serialized ML model binaries (.pkl)
 ├── notebooks/                # Jupyter notebooks for data analysis prototyping
+├── powerbi/                  # Star schema documentation and layout specs
 ├── processed/                # Pre-computed batch inference output CSVs
 ├── reports/                  # Pre-rendered HTML validation reports and figures
-│   └── figures/              # Metric plots loaded by Streamlit
+│   ├── data_validation/      # Great Expectations data validation output
+│   ├── evidently/            # Data quality monitoring output
+│   ├── figures/              # Metric plots loaded by Streamlit
+│   └── optimization/         # Optuna tuning study outputs
 ├── service/                  # FastAPI service entry point
 ├── src/                      # ML pipeline training and data processing code
 ├── tests/                    # Unit and regression testing suite
+├── .gitattributes            # Git LFS tracking configuration
+├── .gitignore                # Excluded files and folders config
+├── cleanup_execution_report.md  # Report of executed data cleanups
+├── cleanup_phase_1_report.md # Phase 1 pipeline cleanup report
+├── CONTRIBUTING.md           # Developer contributing guidelines
+├── LICENSE                   # Project LICENSE
 ├── pyproject.toml            # Formatter and test configurations
+├── requirements-forecasting-optional.txt  # Optional forecast models dependencies
+├── requirements-lock.txt     # Locked version pins
 ├── requirements.txt          # Main runtime dependencies
+├── run_mlflow_ui.py          # Script to run MLflow dashboard
+├── sitecustomize.py          # Custom python path hook
 └── README.md
 ```
 
