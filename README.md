@@ -37,7 +37,7 @@ The application runs on a batch-inference data flow:
 
 ## Folder Structure
 ```text
-retailpulse-main/
+RetailPulse-AI/
 ├── api/                      # FastAPI endpoint routes, services, and schemas
 ├── app/                      # Streamlit application source files
 │   ├── components/           # UI components, layout styles, and loaders
