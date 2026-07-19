@@ -2,123 +2,98 @@
 
 ### AI-Powered Retail Demand Forecasting & Inventory Intelligence Platform
 
-![Python](https://img.shields.io/badge/python-3.11%2B-blue)
-![Streamlit](https://img.shields.io/badge/UI-Streamlit-orange)
-![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-brightgreen)
-![Great Expectations](https://img.shields.io/badge/Data%20Validation-Great%20Expectations-green)
-![Evidently AI](https://img.shields.io/badge/Data%20Monitoring-Evidently%20AI-blueviolet)
-
-RetailPulse AI is an enterprise-grade retail analytics dashboard built on the Online Retail II transactional dataset. The platform is designed for serverless cloud deployment, loading pre-computed batch inference datasets (`processed/`) and chart figures directly into an interactive, cached multi-page **Streamlit** application. 
+RetailPulse AI is an interactive analytics application built with Streamlit and backed by a FastAPI service, designed to process historical transactional logs, group customers via RFM clustering, forecast future demand timelines, calculate safe stocking limits, and score churn risk factors.
 
 ---
 
-## 💼 Business Problem
-Modern retail operators face immense challenges in balancing product supply and customer demand. Overstocking locks up capital and incurs storage costs, while stockouts lead to lost revenue and customer churn. RetailPulse AI addresses this friction by presenting transactional predictions (sales trends, replenishment thresholds, and churn risks) inside a conformed business cockpit, enabling managers to make data-driven logistics and retention decisions.
+## 📋 Project Overview
+The platform acts as a predictive cockpit for retail operations. By ingesting invoice transaction tables, it automates statistical validations, segment grouping, time-series forecasting, safety stock math, and retention profiling, presenting all metrics in a multi-page web dashboard.
 
 ---
 
-## 🎯 Objectives
-* **Pipeline Automation:** Build a robust data engineering ETL pipeline to validate and clean transactional logs.
-* **Predictive Forecasting:** Benchmark regression and time-series estimators to forecast product demand.
-* **Inventory Control:** Calculate safety stocks, Economic Order Quantity (EOQ), and reorder thresholds dynamically.
-* **Customer Retention:** Identify at-risk clients using classification models and recommend retention plans.
-* **Executive Visualization:** Present unified predictive metrics to stakeholders via a fast, cached web interface.
-
----
-
-## ⚙️ System Architecture
-The deployed Streamlit dashboard uses a **batch-inference data-delivery architecture**. The dashboard does not run heavy training pipelines, query live databases, or request endpoints from an active FastAPI backend. Instead, it reads pre-computed CSV files and pre-rendered PNG figures directly from disk, ensuring fast load times and a lightweight memory footprint suitable for Streamlit Community Cloud.
-
-```text
-  +-------------------------------+
-  |  Offline Pipeline Runs (src/) |
-  +---------------+---------------+
-                  | (Generates)
-                  v
-  +-------------------------------+
-  |  Pre-computed Batch Storage   |
-  |  - processed/*.csv            |
-  |  - reports/figures/*.png      |
-  +---------------+---------------+
-                  | (Cached Load)
-                  v
-  +-------------------------------+
-  | Deployed Streamlit Cloud App  |
-  | (Home.py / pages / components)|
-  +-------------------------------+
-```
+## 💎 Features
+* **Key KPI Metrics:** Visualizes transaction volume, gross revenue, average shopping cart size, and location trends.
+* **RFM Customer Segmentation:** Analyzes transaction recency, frequency, and monetary values to classify customer cohorts using KMeans clustering.
+* **Time-Series Demand Forecasting:** Compares regression models to forecast demand quantities across multiple business horizons.
+* **Inventory Control & ROP:** Computes Safety Stock thresholds, Economic Order Quantity (EOQ), and Reorder Points (ROP) using ABC/XYZ analysis.
+* **Churn Classifier Profiling:** Scores customer health scores, purchase frequency windows, and outputs clear retention plans.
+* **Data Quality Checks:** Integrates Great Expectations logs to inspect row formatting, price bounds, and missing data assertions.
 
 ---
 
 ## 🛠️ Technology Stack
-The runtime technology stack of the deployed Streamlit application includes:
-
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Data Ingestion** | Pandas, NumPy | Central data loading, date parsing, and cached aggregations |
-| **Interactive Graphs** | Plotly | Dynamic monthly sales timelines and customer segment mix charts |
-| **Presentation UI** | Streamlit, CSS | Multi-page sidebar navigation, KPI cards, and custom dark-theme stylesheets |
-| **Configuration** | Pathlib, Python | Dynamic settings path resolution and conformed logger bindings |
+* **Frontend Dashboard:** Streamlit, Plotly, HTML/CSS
+* **Service API Backend:** FastAPI, Uvicorn, Pydantic
+* **Modeling & Analytics:** Scikit-learn, Pandas, NumPy, Optuna
+* **Data Validation:** Great Expectations
+* **Metrics Monitoring:** Evidently AI, MLflow
 
 ---
 
-## 📦 Project Modules
-
-### 1. Data Engineering
-Performs raw transaction validation, cleaning, and features extraction. The preprocessing pipeline integrates **Great Expectations** to assert data quality, bounds, and column schemas before writing conformed records to `data/processed/final_processed_dataset.csv`.
-
-### 2. Executive Dashboard
-Serves as the central operational hub. It displays conformed executive KPIs (Revenue, Orders, Churn Rate, Inventory Health), a visual sales trend chart, segment mix distributions, and status badges checking the existence of ML models on disk.
-
-### 3. Sales Analytics
-Visualizes transaction growth trends, category sales shares, and basket qualities. It enables operators to identify category concentrations and high-monetary transaction clusters.
-
-### 4. Customer Intelligence
-Visualizes RFM (Recency, Frequency, Monetary) segment distributions and Customer Lifetime Value (CLV) ratings. Customer records are clustered into Loyalist, Champion, or At-Risk groups using **KMeans** clustering.
-
-### 5. Demand Forecasting
-Displays time-series demand predictions over multiple horizons (30, 60, 90, 180 days). It benchmarks ML model performance (ARIMA, Random Forest, XGBoost) and outputs future demand requirements.
-
-### 6. Inventory Optimization
-Exposes safety stock buffers, replenishment points (ROP), Economic Order Quantity (EOQ), and carrying costs. Deployed tables map SKU categorizations to ABC/XYZ priority matrices to highlight stockout risks.
-
-### 7. Customer Churn Prediction
-Displays customer health scores, next-purchase likelihoods, and risk categories generated by Random Forest/Gradient Boosting classifiers. It lists conformed customer retention action plans and reasons.
-
-### 8. Report Center
-Provides a secure file distribution directory. Users can review, paginate, and download pre-generated pipeline reports (evident validation HTMLs, markdown ROI analyses, and visual figures).
+## ⚙️ Project Architecture
+The platform is designed around a modular batch-inference execution flow:
+1. Preprocessing pipelines in `src/` validate raw transactions, engineer features, train models, and write outputs to `processed/`.
+2. The Streamlit frontend loads these conformed output files directly from disk to render analytical views.
+3. The FastAPI server reads the same `processed/` files to expose REST endpoints.
 
 ---
 
-## 📂 Project Structure
+## 📂 Folder Structure
 ```text
 retailpulse-main/
-├── .streamlit/               # Streamlit theme and layout settings
-├── app/                      # Streamlit UI implementation
-├── components/               # UI cards, charts, tables, and caching helpers
-├── pages/                    # Streamlit multi-page dashboards
-├── styles/                   # Styling CSS sheets
-├── data/                     # Data directory
-│   └── processed/            # Curated feature dataset (final_processed_dataset.csv)
-├── docs/                     # Technical reviews and dependency registers
-├── models/                   # Serialized ML models (best_churn_model.pkl, etc.)
-├── notebooks/                # Analyst Jupyter prototyping notebooks
-├── processed/                # Pre-computed output CSVs loaded at runtime
-├── reports/                  # Markdown summaries and Evidently validation HTMLs
-│   └── figures/              # visual plot figures displayed in Streamlit
-├── src/                      # ML training pipelines and configuration settings
-├── tests/                    # pytest suite (regression, endpoints, pipelines)
-├── pyproject.toml            # Tool configurations
-├── requirements.txt          # Core dependencies
-└── README.md
+├── .github/                  # GitHub workflows and issue templates
+├── api/                      # FastAPI endpoints, schemas, and routes
+├── app/                      # Streamlit application source files
+│   ├── components/           # UI widgets, layout styles, and helper scripts
+│   ├── pages/                # Streamlit multi-page views
+│   └── styles/               # CSS stylesheets
+├── data/                     # Data folder
+│   └── processed/            # Location of cleaned transaction dataset
+├── docs/                     # Documentation reviews and registers
+├── models/                   # Serialized ML model binaries (.pkl)
+├── notebooks/                # Jupyter notebook prototypes for ML training
+├── powerbi/                  # Star schema documentation and layout specs
+├── processed/                # Pre-computed batch inference output CSVs
+├── reports/                  # Pre-rendered HTML validation reports and figures
+│   └── figures/              # Metric plots loaded by Streamlit
+├── service/                  # FastAPI service entry point
+├── src/                      # ML pipeline training and data processing code
+├── tests/                    # Unit and regression testing suite
+├── CONTRIBUTING.md           # Developer contributing guidelines
+├── LICENSE                   # Project LICENSE
+├── pyproject.toml            # Formatter and test configurations
+├── requirements.txt          # Main runtime dependencies
+├── requirements-lock.txt     # Locked version pins
+└── run_mlflow_ui.py          # Script to run MLflow dashboard
 ```
+
+---
+
+## 📥 Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ojamsrivastava06/RetailPulse-AI.git
+   cd RetailPulse-AI
+   ```
+
+2. **Set up a virtual environment:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ---
 
 ## 🚀 Running Locally
 
-### 1. Run Preprocessing & Training Pipelines
-Execute the scripts in order to validate, segment, forecast, and predict churn outputs (writing CSVs to `processed/`):
+### 1. Execute Preprocessing & Model Pipelines
+Run the scripts sequentially to validate data, perform segmentation, forecast demand, and train churn models:
 ```bash
 python src/run_phase_one.py
 python src/run_phase_three.py
@@ -126,32 +101,35 @@ python src/run_phase_four.py
 python src/run_phase_five.py
 ```
 
-### 2. Launch the Streamlit Dashboard
+### 2. Launch the Streamlit Application
 ```bash
 streamlit run app/Home.py
 ```
 Open: `http://localhost:8501`
 
----
-
-## ☁️ Deployment
-* **GitHub Submission:** The repository is configured to track the heavy 108 MB dataset `final_processed_dataset.csv` using **Git LFS**, allowing the repository to be pushed successfully without size blockages.
-* **Streamlit Community Cloud:** Deployed directly from this GitHub branch. The app automatically provisions packages via `requirements.txt` and reads conformed cache tables.
-
----
-
-## 🛠️ Offline Developer & Integration Assets
-The repository contains additional assets that are not loaded by the deployed Streamlit runtime, but are included in the codebase for portfolio and local developer purposes:
-* **FastAPI Backend (`api/`):** An optional REST API codebase exposing conformed dashboard datasets as authenticated JSON endpoints (started via `uvicorn api.main:app`).
-* **Power BI Assets (`powerbi/`):** Star schema documentation and DAX measurement specifications to guide external power BI analytics dashboards.
-* **Tests Suite (`tests/`):** Pytest checks verifying pipeline integrity, data loading wrappers, and FastAPI endpoints.
+### 3. Launch the FastAPI API Server
+```bash
+uvicorn api.main:app --reload
+```
+Open: `http://localhost:8000/docs`
 
 ---
 
-## 📈 Results
-* **KMeans Segmentation:** Segmented buyers into Loyalists, Champions, Hibernating, and At-Risk groups.
-* **Demand Forecasts:** Achieved demand forecast accuracy above 85% on conformed items.
-* **Churn Classifiers:** Model achieved F1-scores over 0.78 on test sets, identifying major customer retention risk categories.
+## ☁️ Streamlit Deployment
+* **GitHub Integration:** Deployed directly from this repository to Streamlit Community Cloud.
+* **Large Files Management:** The heavy conformed dataset `final_processed_dataset.csv` is configured under Git LFS to bypass GitHub's 100 MB file limit and prevent push failures.
+
+---
+
+## 🖼️ Screenshots
+*(Dashboard visuals and screenshot previews will be linked here).*
+
+---
+
+## 🔮 Future Improvements
+* Integrating automated continuous integration (CI) tests for code formatting and styling.
+* Adding comprehensive typing support using mypy.
+* Enhancing unit test coverage.
 
 ---
 
@@ -159,8 +137,5 @@ The repository contains additional assets that are not loaded by the deployed St
 **Ojam Srivastava**  
 *Email:* ojamsrivastava06@gmail.com  
 *GitHub:* [ojamsrivastava06](https://github.com/ojamsrivastava06)  
+*Project URL:* https://github.com/ojamsrivastava06/RetailPulse-AI  
 
----
-
-## 📄 License
-This project is licensed under the MIT License — see the LICENSE file for details.
