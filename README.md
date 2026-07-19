@@ -43,9 +43,7 @@ retailpulse-main/
 │   ├── components/           # UI components, layout styles, and loaders
 │   ├── pages/                # Streamlit multi-page dashboards
 │   └── styles/               # CSS stylesheets
-├── data/                     # Data folder
-│   ├── external/             # External reference data files
-│   ├── interim/              # Intermediate data files
+├── data/                     # Data folder          
 │   ├── processed/            # Location of cleaned transaction dataset
 │   └── raw/                  # Source raw data files
 ├── models/                   # Serialized ML model binaries (.pkl)
