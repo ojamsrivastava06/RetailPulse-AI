@@ -49,11 +49,11 @@ RetailPulse-AI/
 ├── models/                   # Serialized ML model binaries (.pkl)
 ├── notebooks/                # Jupyter notebooks for data analysis prototyping
 ├── processed/                # Pre-computed batch inference output CSVs
-├── reports/                  # Pre-rendered HTML validation reports and figures
-│   ├── data_validation/      # Great Expectations data validation output
-│   ├── evidently/            # Data quality monitoring output
-│   ├── figures/              # Metric plots loaded by Streamlit
-│   └── optimization/         # Optuna tuning study outputs
+├── reports/                  # Generated reports, visualizations, and validation outputs
+│   ├── data_validation/      # Data validation results
+│   ├── evidently/            # Data quality monitoring reports
+│   ├── figures/              # Charts and visualizations
+│   └── optimization/         # Hyperparameter optimization outputs
 ├── src/                      # ML pipeline training and data processing code
 ├── tests/                    # Unit and regression testing suite
 ├── .gitattributes            # Git LFS tracking configuration
