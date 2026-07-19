@@ -14,8 +14,7 @@ RetailPulse is a multi-phase retail analytics repository built on the Online Ret
 - Phase 4: inventory planning, risk modeling, and recommendation generation
 - Phase 5: customer churn scoring, retention intelligence, and action recommendations
 - Phase 6: Power BI design, implementation documentation, and executive reporting guidance
-- Enterprise Streamlit Platform: unified AI analytics application over the completed phase artifacts
-- Enterprise AI Decision Intelligence Engine: cross-phase recommendations, alerts, scenarios, risk, confidence, and ROI analysis
+- Interactive Streamlit Dashboard: unified AI analytics application over the completed phase artifacts
 
 ## Architecture
 
@@ -78,12 +77,12 @@ Raw Excel
 
 ## Model Zoo
 
-- Customer intelligence: `KMeans`, `PCA`, `TSNE`
+- Customer intelligence: `KMeans`, `PCA`
 - Forecasting baseline: Naive, Moving Average, Linear Regression, Random Forest
-- Forecasting optional: XGBoost, LightGBM, Prophet, CatBoost, TensorFlow sequence models
+- Forecasting optional: XGBoost, LightGBM, Prophet, TensorFlow sequence models
 - Inventory risk: Logistic Regression, Decision Tree, Random Forest
-- Inventory optional: XGBoost, LightGBM, CatBoost
-- Churn intelligence: Logistic Regression, Decision Tree, Random Forest, Extra Trees, Gradient Boosting, AdaBoost, SVM, KNN, Naive Bayes, MLP, plus optional XGBoost, LightGBM, and CatBoost
+- Inventory optional: XGBoost, LightGBM
+- Churn intelligence: Logistic Regression, Decision Tree, Random Forest, SVM, KNN, Naive Bayes, MLP, plus optional XGBoost, LightGBM, and CatBoost
 
 ## Outputs
 
@@ -167,22 +166,6 @@ http://127.0.0.1:8000/openapi.json
 http://127.0.0.1:8000/redoc
 ```
 
-### API Authentication
-
-Health endpoints are open. Business endpoints require the API key header:
-
-```bash
-curl -H "X-API-Key: retailpulse-dev-api-key" http://127.0.0.1:8000/analytics/kpis
-```
-
-Override local keys with:
-
-```bash
-set RETAILPULSE_API_KEYS=key-one,key-two
-```
-
-JWT bearer validation is available when `RETAILPULSE_JWT_SECRET` is configured.
-
 ### API Endpoint Groups
 
 - Health: `/health`, `/version`, `/status`
@@ -210,33 +193,6 @@ More details:
 - [Authentication](docs/AUTHENTICATION.md)
 - [Launch Notes](docs/DEPLOYMENT_NOTES.md)
 
-## Decision Intelligence Engine
-
-The decision intelligence layer is additive and consumes existing phase outputs from `processed/`, `data/processed/`, `models/`, and `reports/`. It does not retrain models or overwrite source datasets.
-
-Generate the decision artifacts from the repository root:
-
-```bash
-python src/decision_engine.py
-```
-
-The engine writes:
-
-- `processed/business_decisions.csv`
-- `processed/executive_summary.csv`
-- `processed/business_alerts.csv`
-- `processed/priority_actions.csv`
-- `processed/risk_summary.csv`
-- `processed/scenario_analysis.csv`
-- `processed/recommendation_scores.csv`
-- `reports/executive_decision_report.md`
-- `reports/business_action_plan.md`
-- `reports/strategic_recommendations.md`
-- `reports/risk_assessment.md`
-- `reports/roi_analysis.md`
-
-The Streamlit platform includes dedicated pages for Decision Dashboard, Executive Decision Center, Business Alerts, Scenario Analysis, and AI Recommendations.
-
 ## Quality Guardrails
 
 - `pyproject.toml` configures Black and pytest defaults
@@ -257,10 +213,6 @@ The project includes built-in experiment tracking with MLflow to capture model t
 - **RetailPulse Forecasting**: Tracks both baseline and enhanced time-series forecasting (leaderboard comparisons, best model selection, backtest metrics, and forecast charts).
 - **RetailPulse Inventory Optimization**: Tracks safety stock risk classification models (F1-score, accuracy, precision, recall, and inventory dashboards).
 - **RetailPulse Customer Churn**: Tracks user churn prediction models (leaderboard AUC, accuracy, F1 metrics, retention funnels, and confusion matrices).
-
-## Data Validation (Great Expectations)
-
-The pipeline integrates enterprise-grade data validation using Great Expectations to verify raw data quality before feature engineering and training pipelines are executed.
 
 ### Configuration
 - Validation is run automatically at the start of Phase 1 preprocessing (`src/pipeline.py` and `src/retailpulse_pipeline.py`).
