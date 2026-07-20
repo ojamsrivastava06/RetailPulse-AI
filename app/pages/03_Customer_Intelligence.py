@@ -72,7 +72,7 @@ render_sidebar(
     page_label="Customer Intelligence",
     summary={
         "Customers": format_compact(customer["CustomerID"].nunique()) if "CustomerID" in customer.columns else "n/a",
-        "CLV": format_currency(customer["PredictedCLV"].mean()) if "PredictedCLV" in customer.columns else "n/a",
+        "CLV": format_currency(customer["ExpectedLifetimeValue"].mean()) if "ExpectedLifetimeValue" in customer.columns else "n/a",
         "Health": f"{float(customer['CustomerHealthScore'].mean()):.1f}" if "CustomerHealthScore" in customer.columns else "n/a",
     },
 )
@@ -98,7 +98,7 @@ with st.container(border=True):
 render_kpi_cards(
     [
         KpiCard("Customers", format_compact(customer["CustomerID"].nunique()), "Unique customers in the segment view", "Customer base", "neutral", "👥"),
-        KpiCard("Average CLV", format_currency(customer["PredictedCLV"].mean()) if "PredictedCLV" in customer.columns else "n/a", "Average predicted customer value", "Value concentration", "positive", "💎"),
+        KpiCard("Average CLV", format_currency(customer["ExpectedLifetimeValue"].mean()) if "ExpectedLifetimeValue" in customer.columns else "n/a", "Average predicted customer value", "Value concentration", "positive", "💎"),
         KpiCard("Health Score", f"{float(customer['CustomerHealthScore'].mean()):.1f}" if "CustomerHealthScore" in customer.columns else "n/a", "Average customer health score", "Resilience", "positive", "❤️"),
         KpiCard("VIP Customers", format_compact((customer["HealthBand"] == "VIP").sum()) if "HealthBand" in customer.columns else "n/a", "High-value customer count", "Priority service", "neutral", "⭐"),
         KpiCard("High Risk", format_compact(customer["RiskCategory"].isin(["Critical", "High"]).sum()) if "RiskCategory" in customer.columns else "n/a", "Customers needing attention", "Retention workload", "danger", "🛡️"),
@@ -119,7 +119,7 @@ with top[0]:
             "Frequency",
             size="Monetary" if "Monetary" in customer.columns else None,
             color="Segment" if "Segment" in customer.columns else None,
-            hover_data=["CustomerID", "PredictedCLV", "CustomerHealthScore"] if "PredictedCLV" in customer.columns else ["CustomerID"],
+            hover_data=["CustomerID", "ExpectedLifetimeValue", "CustomerHealthScore"] if "ExpectedLifetimeValue" in customer.columns else ["CustomerID"],
             title="Recency vs Frequency",
             mode=theme_mode,
             height=360,
@@ -154,10 +154,10 @@ with bottom_right:
 
 st.divider()
 render_section_header("Top Customer Profiles", "The highest-value or highest-risk customer records in the active view.")
-profile_columns = [column for column in ["CustomerID", "Segment", "CustomerTier", "PredictedCLV", "CustomerHealthScore", "RiskCategory", "RecommendedAction", "ChurnProbability"] if column in customer.columns]
+profile_columns = [column for column in ["CustomerID", "Segment", "CustomerTier", "ExpectedLifetimeValue", "CustomerHealthScore", "RiskCategory", "RecommendedAction", "ChurnProbability"] if column in customer.columns]
 top_profiles = customer[profile_columns] if profile_columns else customer.head(20)
-if "PredictedCLV" in top_profiles.columns:
-    top_profiles = top_profiles.sort_values("PredictedCLV", ascending=False)
+if "ExpectedLifetimeValue" in top_profiles.columns:
+    top_profiles = top_profiles.sort_values("ExpectedLifetimeValue", ascending=False)
 elif "ChurnProbability" in top_profiles.columns:
     top_profiles = top_profiles.sort_values("ChurnProbability", ascending=False)
 render_dataframe(top_profiles.head(25), height=360)
