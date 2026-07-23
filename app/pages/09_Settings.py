@@ -13,9 +13,7 @@ from components.utils import (
     bootstrap_page,
     current_theme_mode,
     format_compact,
-    list_figures,
     list_models,
-    list_reports,
     load_data_bundle,
     set_theme_mode,
 )
@@ -29,7 +27,6 @@ render_sidebar(
     page_label="Settings",
     summary={
         "Theme": current_theme_mode().title(),
-        "Reports": format_compact(len(list_reports())),
         "Models": format_compact(len(list_models())),
     },
 )
@@ -65,20 +62,16 @@ st.divider()
 st.subheader("Application Information")
 render_kpi_cards(
     [
-        KpiCard("Reports", format_compact(len(list_reports())), "Markdown reports available", "Report inventory", "neutral", "📚"),
-        KpiCard("Figures", format_compact(len(list_figures())), "Generated figures available", "Figure inventory", "neutral", "🖼️"),
         KpiCard("Models", format_compact(len(list_models())), "Saved model artifacts available", "Model inventory", "neutral", "🧪"),
         KpiCard("Datasets", format_compact(len(data)), "Loaded dataset bundle size", "Session load", "positive", "🗂️"),
     ],
-    columns=4,
+    columns=2,
 )
 
 info = pd.DataFrame(
     [
         {"Setting": "Theme", "Value": current_theme_mode().title()},
         {"Setting": "Last refresh", "Value": st.session_state.get(REFRESH_KEY, "n/a")},
-        {"Setting": "Reports directory", "Value": str(list_reports()[0].path.parent) if list_reports() else "n/a"},
-        {"Setting": "Figures directory", "Value": str(list_figures()[0].path.parent) if list_figures() else "n/a"},
         {"Setting": "Models directory", "Value": str(list_models()[0].path.parent) if list_models() else "n/a"},
         {"Setting": "Data bundle size", "Value": format_compact(len(data))},
     ]

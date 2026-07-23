@@ -23,7 +23,6 @@ The raw dataset is cleaned, transformed, and feature-engineered to produce `fina
 - **Demand Forecasting**: Estimates future sales volumes and demand trends across different time horizons.
 - **Inventory Optimization**: Calculates Safety Stock, Reorder Points (ROP), Economic Order Quantity (EOQ), and ABC/XYZ product classifications.
 - **Customer Churn Risk Prediction**: Calculates customer health scores and predicts churn probability to support retention efforts.
-- **Report Center**: Provides structured summary reports for data quality, demand forecasting, inventory health, and churn risk.
 
 ## Machine Learning Modules
 
@@ -33,7 +32,9 @@ The raw dataset is cleaned, transformed, and feature-engineered to produce `fina
 
 ## Streamlit Dashboard
 
-The Streamlit web application (`app/Home.py`) provides an interactive multi-page interface. The pages in `app/pages/` are:
+The Streamlit web application (`app/Home.py`) provides an interactive multi-page interface. The dashboard focuses on business analytics, forecasting, customer intelligence, inventory optimization, and churn prediction.
+
+The pages in `app/pages/` are:
 
 - **Home (`app/Home.py`)**: Landing page with system overview, key metrics, and navigation links.
 - **Executive Dashboard (`app/pages/01_Executive_Dashboard.py`)**: High-level overview of total revenue, customer counts, sales trends, and key performance metrics.
@@ -42,7 +43,6 @@ The Streamlit web application (`app/Home.py`) provides an interactive multi-page
 - **Demand Forecasting (`app/pages/04_Demand_Forecasting.py`)**: Comparison charts of historical sales versus predicted values with model evaluation metrics.
 - **Inventory Optimization (`app/pages/05_Inventory_Optimization.py`)**: Stock health tracking, ABC/XYZ matrix, safety stock recommendations, and reorder point alerts.
 - **Customer Churn (`app/pages/06_Customer_Churn.py`)**: Distribution of customer health scores, high-risk churn lists, and suggested retention actions.
-- **Report Center (`app/pages/08_Report_Center.py`)**: View generated analytical reports and download summary output files.
 - **Settings (`app/pages/09_Settings.py`)**: Configuration page to adjust thresholds, model options, and file paths.
 
 ## FastAPI

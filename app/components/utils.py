@@ -105,7 +105,6 @@ PAGE_LINKS: tuple[PageLink, ...] = (
     PageLink("Demand Forecasting", "pages/04_Demand_Forecasting.py", "🔮", "Modelled demand"),
     PageLink("Inventory Optimization", "pages/05_Inventory_Optimization.py", "📦", "Stock and replenishment"),
     PageLink("Customer Churn", "pages/06_Customer_Churn.py", "🛡️", "Retention actions"),
-    PageLink("Report Center", "pages/08_Report_Center.py", "📚", "Downloads and reports"),
     PageLink("Settings", "pages/09_Settings.py", "⚙️", "Theme and refresh"),
 )
 

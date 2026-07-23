@@ -10,7 +10,7 @@ from components.charts import bar_chart, donut_chart, render_plotly, scatter_cha
 from components.filters import render_filter_bar
 from components.sidebar import render_sidebar
 from components.tables import render_dataframe
-from components.utils import bootstrap_page, format_compact, format_currency, load_data_bundle, file_bytes
+from components.utils import bootstrap_page, format_compact, format_currency, load_data_bundle
 
 
 def _normalize_customer_id(frame: pd.DataFrame) -> pd.DataFrame:
@@ -122,15 +122,8 @@ with middle_right:
         render_plotly(fig)
 
 st.divider()
-figure_tabs = st.tabs(["SHAP / Drivers", "Top Customers", "Action Detail"])
+figure_tabs = st.tabs(["Top Customers", "Action Detail"])
 with figure_tabs[0]:
-    render_section_header("Driver Visuals", "Use the generated SHAP summary or risk matrix if it exists.")
-    shap_path = Path(__file__).resolve().parents[2] / "reports" / "figures" / "33_shap_summary.png"
-    if shap_path.exists():
-        st.image(file_bytes(shap_path))
-    else:
-        st.info("No SHAP summary figure was found in the generated figures directory.")
-with figure_tabs[1]:
     render_section_header("Top Customer Records", "The riskiest or highest-value customers in the current view.")
     detail_cols = [column for column in ["CustomerID", "ChurnProbability", "RetentionProbability", "CustomerHealthScore", "ExpectedLifetimeValue", "RiskCategory", "HealthBand", "RecommendedAction"] if column in churn_view.columns]
     detail_view = churn_view[detail_cols] if detail_cols else churn_view
@@ -139,7 +132,7 @@ with figure_tabs[1]:
     elif "ExpectedLifetimeValue" in detail_view.columns:
         detail_view = detail_view.sort_values("ExpectedLifetimeValue", ascending=False)
     render_dataframe(detail_view.head(25), height=320)
-with figure_tabs[2]:
+with figure_tabs[1]:
     render_section_header("Action Detail", "The text rationale behind the recommended action.")
     action_cols = [column for column in ["CustomerID", "RecommendedAction", "ActionReasoning", "ProbabilityConfidence", "RiskScore"] if column in churn_view.columns]
     render_dataframe(churn_view[action_cols].head(25), height=320)

@@ -8,7 +8,6 @@ import streamlit as st
 from components.cards import KpiCard, NavigationCard, render_kpi_cards, render_navigation_cards, render_section_header
 from components.charts import bar_chart, line_chart, render_plotly
 from components.sidebar import render_sidebar
-from components.tables import render_artifact_grid
 from components.utils import (
     bootstrap_page,
     current_theme_mode,
@@ -16,9 +15,7 @@ from components.utils import (
     format_compact,
     format_currency,
     load_data_bundle,
-    list_figures,
     list_models,
-    list_reports,
     safe_divide,
     time_ago,
     calculate_forecast_accuracy,
@@ -131,7 +128,6 @@ forecast_comparison = data["forecast_comparison"]
 sidebar_summary = {
     "Revenue": format_currency(sales["Revenue"].sum()) if "Revenue" in sales else "n/a",
     "Customers": format_compact(sales["CustomerID"].nunique()) if "CustomerID" in sales else "n/a",
-    "Reports": format_compact(len(list_reports())),
 }
 render_sidebar(theme_mode=theme_mode, summary=sidebar_summary, page_label="Home")
 
@@ -139,7 +135,7 @@ st.markdown(
     """
 <div class="rp-hero">
   <div class="rp-hero-title">RetailPulse – AI-Powered Customer Analytics & Demand Forecasting Platform</div>
-  <div class="rp-hero-subtitle">A single Streamlit workspace for executive review, operational monitoring, forecasting, inventory, churn, and report distribution.</div>
+  <div class="rp-hero-subtitle">A single Streamlit workspace for executive review, operational monitoring, forecasting, inventory, and churn analytics.</div>
 </div>
 """,
     unsafe_allow_html=True,
@@ -179,7 +175,6 @@ render_navigation_cards(
         NavigationCard("Demand Forecasting", "Model comparison and future demand planning.", "pages/04_Demand_Forecasting.py", "🔮"),
         NavigationCard("Inventory Optimization", "Replenishment, EOQ, and stock risk.", "pages/05_Inventory_Optimization.py", "📦"),
         NavigationCard("Customer Churn", "Retention actions and SHAP summaries.", "pages/06_Customer_Churn.py", "🛡️"),
-        NavigationCard("Report Center", "Download CSV, Markdown, and figure artifacts.", "pages/08_Report_Center.py", "📚"),
         NavigationCard("Settings", "Theme and refresh controls.", "pages/09_Settings.py", "⚙️"),
     ],
     columns=4,
@@ -217,21 +212,9 @@ else:
     st.dataframe(model_status, use_container_width=True, hide_index=True)
 
 st.divider()
-reports, figures = list_reports(), list_figures()
-report_cols = st.columns(2, gap="large")
-with report_cols[0]:
-    render_section_header("Recent Reports", "Latest markdown deliverables produced by the pipeline.")
-    render_artifact_grid(reports[:6], columns=2, download_label="Download report")
-with report_cols[1]:
-    render_section_header("Generated Figures", "Most recent business figures for quick review.")
-    render_artifact_grid(figures[:6], columns=2, download_label="Download figure")
-
-st.divider()
 render_section_header("Application Health", f"Theme: {current_theme_mode().title()} · Last refresh: {latest_refresh}")
 health_cards = [
-    KpiCard("Reports", format_compact(len(reports)), "Markdown deliverables detected", "Report center inventory", "neutral", "📚"),
-    KpiCard("Figures", format_compact(len(figures)), "Generated figure assets available", "Figure store", "neutral", "🖼️"),
     KpiCard("Models", format_compact(len(list_models())), "Saved model artifacts available", "Model registry", "neutral", "🧪"),
     KpiCard("Data Bundle", format_compact(len(data)), "Loaded datasets in the current session", "Session cache", "positive", "🗂️"),
 ]
-render_kpi_cards(health_cards, columns=4)
+render_kpi_cards(health_cards, columns=2)
