@@ -10,16 +10,19 @@ footer {
   visibility: hidden;
 }
 
-header {
-  visibility: hidden;
+header[data-testid="stHeader"] {
+  background: transparent;
 }
 
-div[data-testid="stAppViewContainer"] {
-  background: var(--rp-bg);
-  color: var(--rp-text);
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stSidebarCollapsedControl"] {
+  visibility: visible !important;
+  display: flex !important;
 }
 
 section[data-testid="stSidebar"] {
+  visibility: visible !important;
+  display: flex !important;
   background: linear-gradient(180deg, var(--rp-sidebar-bg), var(--rp-bg));
   border-right: 1px solid var(--rp-border);
 }
