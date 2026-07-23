@@ -180,7 +180,7 @@ retailpulse-main/
 - **Trained Model Binaries**: `models/*.pkl` (best forecast model, best churn model, customer health model, scalers, PCA, KMeans)
 - **Data Drift & Quality Reports**: `reports/evidently/` (HTML & JSON drift/quality reports)
 - **Hyperparameter Optimization Artifacts**: `reports/optimization/` (leaderboard, best parameters, feature importances)
-- **Generated Analytical Outputs (after running the pipeline)**: `reports/figures/*.png` and markdown reports in `reports/`
+- **Project Outputs (Generated after pipeline execution)**: `reports/figures/*.png` and markdown reports in `reports/`
 - **Power BI Report File**: `powerbi/RetailPulse_Dashboard.pbix`
 
 ## Future Improvements
