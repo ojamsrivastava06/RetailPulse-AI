@@ -179,7 +179,6 @@ retailpulse-main/
 - **Batch Analytical CSVs**: `processed/*.csv` (forecast outcomes, segment groups, safety stock metrics, churn probabilities)
 - **Trained Model Binaries**: `models/*.pkl` (best forecast model, best churn model, customer health model, scalers, PCA, KMeans)
 - **Data Drift & Quality Reports**: `reports/evidently/` (HTML & JSON drift/quality reports)
-- **Data Validation Reports**: `reports/data_validation/` (HTML & JSON Great Expectations reports)
 - **Hyperparameter Optimization Artifacts**: `reports/optimization/` (leaderboard, best parameters, feature importances)
 - **Visual Figures & Analytical Reports**: `reports/figures/*.png` and markdown reports in `reports/`
 - **Power BI Report File**: `powerbi/RetailPulse_Dashboard.pbix`
