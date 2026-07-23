@@ -99,16 +99,14 @@ retailpulse-main/
 ├── data/                     # Dataset storage
 │   ├── processed/            # Cleaned final dataset (final_processed_dataset.csv)
 │   └── raw/                  # Source transaction dataset (online_retail_II.xlsx)
-├── models/                   # Serialized ML model binaries (.pkl)
-├── notebooks/                # Jupyter notebooks for data analysis & experiments
+├── models/                   
+├── notebooks/               
 ├── powerbi/                  # Power BI dashboard file (RetailPulse_Dashboard.pbix)
 ├── processed/                # Computed batch predictions and analytical output CSVs
-├── reports/                  # Generated reports, charts, and validation outputs
-│   ├── data_validation/      # Great Expectations data validation reports
+├── reports/                  
 │   ├── evidently/            # Evidently AI data drift and quality reports
-│   ├── figures/              # Charts and visualizations
 │   └── optimization/         # Optuna hyperparameter tuning outputs
-├── src/                      # ML pipeline training and data processing code
+├── src/                     
 ├── tests/                    # Pytest test suite for API, models, and pipelines
 ├── .gitattributes            # Git LFS tracking configuration
 ├── .gitignore                # Git ignore rules
