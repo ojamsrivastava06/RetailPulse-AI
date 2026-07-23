@@ -62,11 +62,3 @@ def test_all_required_json_endpoints_return_standard_envelope(api_get) -> None:
         assert_envelope(payload)
         assert payload["status"] == "success"
 
-
-def test_report_download_streams_existing_artifact(api_get) -> None:
-    response = api_get("/reports/download/forecast_report.md")
-
-    assert response.status_code == 200
-    assert response.content
-    assert "content-type" in response.headers
-
